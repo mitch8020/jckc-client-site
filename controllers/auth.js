@@ -1,15 +1,24 @@
 const passport = require('passport')
 const validator = require('validator')
 const User = require('../models/User')
+
+ exports.getLogin = (req, res) => {
+    if (req.user) {
+      return res.redirect('/todos')
+    }
+    res.render('login', {
+      title: 'Login'
+    })
+  }
   
   exports.postLogin = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' })
-
+  
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
-      return res.redirect('/')
+      return res.redirect('/login')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
@@ -17,7 +26,7 @@ const User = require('../models/User')
       if (err) { return next(err) }
       if (!user) {
         req.flash('errors', info)
-        return res.redirect('/')
+        return res.redirect('/login')
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
@@ -59,17 +68,19 @@ const User = require('../models/User')
   
     const user = new User({
       userName: req.body.userName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     })
   
     User.findOne({$or: [
       {email: req.body.email},
-      {userName: req.body.userName}
+      {userName: req.body.userName},
+      {lastName: req.body.lastName}
     ]}, (err, existingUser) => {
       if (err) { return next(err) }
       if (existingUser) {
-        req.flash('errors', { msg: 'Account with that email address or username already exists.' })
+        req.flash('errors', { msg: 'Account with that email address already exists.' })
         return res.redirect('../signup')
       }
       user.save((err) => {
@@ -78,7 +89,7 @@ const User = require('../models/User')
           if (err) {
             return next(err)
           }
-          res.redirect('/todos')
+          res.redirect('/login')
         })
       })
     })

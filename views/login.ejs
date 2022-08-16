@@ -18,12 +18,27 @@
       <div class="card-content">
         <h3><a href="https://jckc-client-site-demo.netlify.app/"><i class="fas fa-house-chimney"></i></a> JCKC Login</h3>
         <div class="section">
-            <p class="lead">Login to your JCKC Account or Create a JCKC Account!</p>
+            <p class="lead">Login to your JCKC account for student sign-in, roll calls, and status updates!</p>
         </div>
         <div class="divider"></div>
         <div class="section">
-          <a href="/login" class="btn red darken-1">Login</a>
-          <a href="/signup" class="btn red darken-1">Signup</a>
+            <% if (locals.messages.errors) { %>
+                <% messages.errors.forEach( el => { %>
+                    <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+            <% } %>
+            <% if (locals.messages.info) { %>
+                <% messages.info.forEach( el => { %>
+                    <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+            <% } %>
+            <form action="/logins" method="POST">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Login" class="btn red darken-1">
+            </form>
+            <br>
+            <p>Don't have an account? <a href="/signup">Signup</a> instead.</p>
         </div>
       </div>
     </div>
