@@ -1,5 +1,6 @@
 const passport = require('passport')
 const validator = require('validator')
+
 const User = require('../models/User')
 
   exports.getLogin = (req, res) => {
@@ -34,17 +35,6 @@ const User = require('../models/User')
         res.redirect(req.session.returnTo || '/dashboard')
       })
     })(req, res, next)
-  }
-  
-  exports.googleLogin = (req, res) => {
-    passport.authenticate('google', { scope: ['profile'] })
-  }
-
-  exports.googleCallback = (req, res, next) => {
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function (req, res) {
-      res.redirect('/dashboard')
-    }
   }
 
   exports.logout = (req, res) => {
