@@ -2,6 +2,9 @@ const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
+  googleId: {
+    type: String
+  },
   userName: { 
     type: String, 
     required: true 
@@ -25,7 +28,7 @@ const UserSchema = new mongoose.Schema({
 })
 
 // Password hash middleware.
-  UserSchema.pre('save', function save(next) {
+UserSchema.pre('save', function save(next) {
   const user = this
   if (!user.isModified('password')) { return next() }
   bcrypt.genSalt(10, (err, salt) => {
