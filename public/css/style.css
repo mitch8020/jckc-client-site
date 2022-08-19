@@ -1,17 +1,5 @@
-.completed{
-    text-decoration: line-through;
-    color: gray;
-}
-.not{
-    text-decoration: underline;
-}
-
-.todoItem:hover {
-    cursor: pointer;
-}
-
 .login-container {
-    width: 400px;
-    margin-top: 50px;
-    text-align: center;
-  }
+  width: 400px;
+  margin-top: 50px;
+  text-align: center;
+}
