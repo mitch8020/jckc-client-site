@@ -12,45 +12,23 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=790033922419980&autoLogAppEvents=1" nonce="UjFp1YB7"></script>
+    
   <div class="container login-container">
     <div class="card">
       <div class="card-content">
         <h3><a href="https://jckc-client-site-demo.netlify.app/"><i class="fas fa-house-chimney"></i></a> JCKC Login</h3>
         <div class="section">
-            <p class="lead">Login to your JCKC Account!</p>
+            <p class="lead">Login to your JCKC Account<br>- or -<br>Create a new JCKC Account!</p>
         </div>
         <div class="divider"></div>
         <div class="section">
-          <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+          <a href="/login" class="btn red darken-1">Login</a>
+          <a href="/signup" class="btn red darken-1">Signup</a>
         </div>
       </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '{your-app-id}',
-        cookie     : true,
-        xfbml      : true,
-        version    : '{api-version}'
-      });
-        
-      FB.AppEvents.logPageView();   
-        
-    };
-
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
 </body>
 </html>

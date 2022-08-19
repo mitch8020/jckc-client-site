@@ -1,50 +1,64 @@
-const path = require('path')
 const express = require('express')
-const mongoose = require('mongoose')
+const app = express()
 const dotenv = require('dotenv')
-const morgan = require('morgan')
+const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-const connectDB = require('./config/db')
-
-const app = express()
+const flash = require('express-flash')
+const logger = require('morgan')
+const connectDB = require('./config/database')
+const mainRoutes = require('./routes/main')
+const todoRoutes = require('./routes/todos')
 
 // Load Config
-dotenv.config({ path: './config/config.env' })
+dotenv.config({ path: './config/.env' })
 
-// Passport config
+// Passport Config
 require('./config/passport')(passport)
 
+connectDB()
+
+app.set('view engine', 'ejs')
+
 // Static Folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'))
 
-// Logging
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'))
-}
-
-// Body-Parser
-app.use(express.urlencoded({ extended: false }))
+// Body Parser
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// Sessions
-app.use(session({
-  secret: 'keyboard mouse',
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}))
+// Logging
+app.use(logger('dev'))
 
+// Sessions
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+)
+  
 // Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
+// Flash (Error Display)
+app.use(flash())
+
+// // Set Global Var
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null
+  next()
+})
+
 // Routes
-app.use('/', require('./routes/index'))
-app.use('/auth', require('./routes/auth'))
+app.use('/', mainRoutes)
+app.use('/dashboard', todoRoutes)
 
 // PORT Connection
 app.listen(process.env.PORT, ()=>{
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`)
-})
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}. Go catch it!`)
+})    
