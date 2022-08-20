@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 
 let baseUrl = process.env.NODE_ENV == 'development' ? "http://localhost:3000/auth/google/callback" 
-                                                    : "https://mood-tracker-demo.herokuapp.com/auth/google/callback"
+                                                    : "https://jckc-client-site-demo.herokuapp.com/auth/google/callback"
 
 module.exports = (passport) => {
   passport.use(new GoogleStrategy({
