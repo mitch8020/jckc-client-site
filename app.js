@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const product = require('./api/product')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
@@ -19,6 +20,9 @@ connectDB()
 
 const app = express()
 const PORT = process.env.PORT || 3000
+
+// Vercel Express JS Deploy
+app.use('/api/product', product);
 
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')))
