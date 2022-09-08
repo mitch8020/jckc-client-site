@@ -23,7 +23,19 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  parentPermission: {
+    type: Boolean,
+  },
+  teacherPermission: {
+    type: Boolean,
+  },
+  adminPermission: {
+    type: Boolean,
+  },
+  registrationStatus: {
+    type: Boolean,
+  },
 })
 
 module.exports = mongoose.model('User', UserSchema)

@@ -17,16 +17,19 @@ module.exports = (passport) => {
       displayName: profile.displayName,
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
-      image: profile.photos[0].value
+      image: profile.photos[0].value,
+      parentPermission: false,
+      teacherPermission: false,
+      adminPermission: false,
+      registrationStatus: false,
     }
     try {
       let user = await User.findOne({ googleId: profile.id })
       if (user) {
         done(null, user)
       } else {
-        // user = await User.create(newUser)
-
-        done(null)
+        user = await User.create(newUser)
+        done(null, user)
       }
     } catch (error) {
       console.log(error)
