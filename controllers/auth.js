@@ -10,7 +10,13 @@ exports.logout = (req, res) => {
 }
 
 // @desc    Redirect No Account User
-// @route   /auth/no-account
+// @route   /auth/error/noAccount
 exports.noAccount = (req, res) => {
-  res.render('./errors/no-account.ejs')
+  res.render('./error/no-account.ejs')
+}
+
+// @desc    Register Parent Account
+// @route   /auth/acctRegistration
+exports.acctRegistration = (req, res) => {
+  res.render('acctRegistration.ejs')
 }

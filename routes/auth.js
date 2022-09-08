@@ -9,17 +9,16 @@ router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
 
 // @desc    Google Auth Callback
 // @route   GET /auth/google/callback
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/auth/errors/noAccount' }), (req, res) => {
-  console.log(req.user)
-  res.redirect('/dashboard')
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/auth/error/noAccount' }), async (req, res) => {
+  if (!req.user.registrationStatus) {
+    res.redirect('/auth/acctRegistration')
+  } else {
+    res.redirect('/dashboard')
+  }
 })
 
-// @desc    Log Out User
-// @route   /auth/logout
 router.get('/logout', authController.logout)
-
-// @desc    No Account User
-// @route   /auth/errors/noAccount
-router.get('/errors/noAccount', authController.noAccount)
+router.get('/error/noAccount', authController.noAccount)
+router.get('/acctRegistration', authController.acctRegistration)
 
 module.exports = router

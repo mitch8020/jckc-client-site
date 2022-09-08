@@ -1,0 +1,61 @@
+<%- include('partials/login-header') -%>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6">
+  <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
+  <div class="mx-auto max-w-2xl">
+    <div class="bg-white">
+      <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+        <h2 class="inline text-3xl font-bold tracking-tight text-gray-900 sm:block sm:text-4xl">Register your JCKC Account</h2>
+        <form action="/auth/pushRegistration" method="POST" class="mt-8">
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+            <div class="mt-1">
+              <input id="firstName" name="firstName" type="text" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+          <br>
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+            <div class="mt-1">
+              <input id="lastName" name="lastName" type="text" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+          <br>
+          <div>
+            <label for="dateOfBirth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+            <div class="mt-1">
+              <input id="dateOfBirth" name="dateOfBirth" type="date" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+          <br>
+          <div>
+            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+            <div class="mt-1">
+              <input id="phoneNumber" name="phoneNumber" type="tel" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+          <br>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+            <div class="mt-1">
+              <input id="email" name="email" type="email" autocomplete="email" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+          <br>
+          <div>
+            <p class="block text-sm font-medium text-gray-700">Account Type</p>
+            <input type="radio" id="parent" name="accountType" value="parent" required>
+            <label for="parent">Parent</label><br>
+            <input type="radio" id="teacher" name="accountType" value="teacher" required>
+            <label for="teacher">Teacher</label><br>
+            <input type="radio" id="admin" name="accountType" value="admin" required>
+            <label for="admin">Admin</label>
+          </div>
+          <br>
+          <button type="submit" class="items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/login-footer') -%>

@@ -13,7 +13,11 @@ router.get('/', ensureGuest, homeController.getIndex)
 // @route   GET /dashboard
 router.get('/dashboard', ensureAuth, async (req, res) => {
   try {
-    res.render('dashboard.ejs')
+    if (!req.user.registrationStatus) {
+      res.redirect('/auth/acctRegistration')
+    } else {
+      res.render('dashboard.ejs')
+    }
   } catch (error) {
     console.error(error)
     // res.render('error/500')
