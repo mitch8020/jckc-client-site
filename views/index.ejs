@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-50">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>JCKC Login</title>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="h-full">
-
+<%- include('partials/login-header') -%>
   <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow">
-      <h2 class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">Sign in to your JCKC account</h2>
+      <h2 class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">Log in to your JCKC account</h2>
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -34,7 +20,7 @@
         <div class="mt-6">
           <div>
             <a href="/auth/google" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-              <span class="sr-only">Sign in with Google</span>
+              <span class="sr-only">Log in with Google</span>
               <i class="fab fa-google left"></i>
             </a>
           </div>
@@ -44,6 +30,4 @@
     </div>
     
   </div>
-
-</body>
-</html>
+<%- include('partials/login-footer') -%>
