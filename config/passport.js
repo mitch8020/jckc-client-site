@@ -1,9 +1,9 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const { render } = require('ejs')
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
-let baseUrl = process.env.NODE_ENV == 'development' ? "http://localhost:3000/auth/google/callback" 
-                                                    : "https://jckc-client-site-demo.herokuapp.com/auth/google/callback"
+let baseUrl = process.env.NODE_ENV == 'development' ? "http://localhost:3000/auth/google/callback" : "https://jckc-client-site-demo.herokuapp.com/auth/google/callback"
 
 module.exports = (passport) => {
   passport.use(new GoogleStrategy({
@@ -24,8 +24,9 @@ module.exports = (passport) => {
       if (user) {
         done(null, user)
       } else {
-        user = await User.create(newUser)
-        done(null, user)
+        // user = await User.create(newUser)
+
+        done(null)
       }
     } catch (error) {
       console.log(error)

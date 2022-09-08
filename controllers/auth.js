@@ -8,3 +8,9 @@ exports.logout = (req, res) => {
     res.redirect('/')
   })
 }
+
+// @desc    Redirect No Account User
+// @route   /auth/no-account
+exports.noAccount = (req, res) => {
+  res.render('./errors/no-account.ejs')
+}
