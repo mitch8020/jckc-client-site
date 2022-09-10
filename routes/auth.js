@@ -21,6 +21,6 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 router.get('/logout', authController.logout)
 router.get('/error/noAccount', authController.noAccount)
 router.get('/acctRegistration', ensureAuth, authController.acctRegistration)
-router.post('/pushRegistration/:id', ensureAuth, authController.pushRegistration)
+router.put('/pushRegistration/:id', ensureAuth, authController.pushRegistration)
 
 module.exports = router

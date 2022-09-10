@@ -14,7 +14,7 @@ module.exports = {
       if (!req.user.registrationStatus) {
         res.redirect('/auth/acctRegistration')
       } else {
-        res.render('dashboard.ejs')
+        res.render('dashboard-parent.ejs')
       }
     } catch (error) {
       console.error(error)
