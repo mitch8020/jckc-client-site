@@ -26,13 +26,36 @@ exports.acctRegistration = (req, res) => {
 // @desc    Push Account Registration
 // @route   PUT /auth/acctRegistration
 exports.pushRegistration = async (req, res) => {
+  const accountType = req.body.accountType
   try {
     await User.findOneAndUpdate(
       { _id: req.params.id },
-      { registrationStatus: true }
+      { 
+        firstNameApp: req.body.firstNameApp,
+        lastNameApp: req.body.lastNameApp,
+        dateOfBirth: req.body.dateOfBirth,
+        phoneNumber: req.body.phoneNumber,
+        emailAddress: req.body.emailAddress,
+        accountType: req.body.accountType,
+        registrationStatus: true 
+      }
     );
+    if (accountType === 'parent') {
+      await User.findOneAndUpdate(
+        { _id: req.params.id },
+        { parentPermission: true }
+    )} else if (accountType === 'teacher') {
+      await User.findOneAndUpdate(
+        { _id: req.params.id },
+        { teacherPermission: true }
+    )} else if (accountType === 'admin') {
+      await User.findOneAndUpdate(
+        { _id: req.params.id },
+        { adminPermission: true }
+    )}
     console.log("Account Registered!");
-    res.redirect(`/dashboardParent/${req.params.id}`);
+    res.redirect(`/dashboard`)
+    // res.redirect(`/dashboardParent/${req.params.id}`);
   } catch (error) {
     console.log(error)
   }

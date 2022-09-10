@@ -9,13 +9,31 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  firstName: {
+  firstNameGoog: {
     type: String,
     required: true
   },
-  lastName: {
+  lastNameGoog: {
     type: String,
     required: true
+  },
+  firstNameApp: {
+    type: String
+  },
+  lastNameApp: {
+    type: String
+  },
+  dateOfBirth: {
+    type: String
+  },
+  phoneNumber: {
+    type: String
+  },
+  emailAddress: {
+    type: String
+  },
+  accountType: {
+    type: String
   },
   image: {
     type: String
