@@ -1,3 +1,4 @@
+// Mobile Dropdown Menu
 const mobileHam = document.querySelector('button')
 const btnHam = document.querySelectorAll('svg')
 const mobileMenu = document.querySelector('#mobile-menu')
