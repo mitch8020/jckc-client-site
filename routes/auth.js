@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const authController = require('../controllers/auth')
 const router = express.Router()
+const { ensureGuest, ensureAuth } = require('../middleware/auth')
 
 // @desc    Auth with Google
 // @route   GET /auth/google
@@ -19,6 +20,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 
 router.get('/logout', authController.logout)
 router.get('/error/noAccount', authController.noAccount)
-router.get('/acctRegistration', authController.acctRegistration)
+router.get('/acctRegistration', ensureAuth, authController.acctRegistration)
+router.post('/pushRegistration/:id', ensureAuth, authController.pushRegistration)
 
 module.exports = router

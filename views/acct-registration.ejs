@@ -6,7 +6,8 @@
     <div class="bg-white">
       <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <h2 class="inline text-3xl font-bold tracking-tight text-gray-900 sm:block sm:text-4xl">Register your JCKC Account</h2>
-        <form action="/auth/pushRegistration" method="POST" class="mt-8">
+        <form action="/auth/pushRegistration/<%= user.id %>"
+          method="POST" class="mt-8">
           <div>
             <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
             <div class="mt-1">
