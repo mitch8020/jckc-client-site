@@ -54,9 +54,14 @@ exports.pushRegistration = async (req, res) => {
         { adminPermission: true }
     )}
     console.log("Account Registered!");
-    res.redirect(`/dashboard`)
-    // res.redirect(`/dashboardParent/${req.params.id}`);
+    res.redirect(`/auth/registrationSuccess/${req.params.id}`)
   } catch (error) {
     console.log(error)
   }
+}
+
+// @desc    Get Registration Success Page
+// @route   GET /auth/registrationSuccess
+exports.registrationSuccess = (req, res) => {
+  res.render('registration-success.ejs')
 }

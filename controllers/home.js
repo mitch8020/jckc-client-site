@@ -1,4 +1,4 @@
-// const Entry = require('../models/Entry')
+const User = require('../models/User')
 
 module.exports = {
   // @desc    Login/Landing Page
@@ -9,12 +9,19 @@ module.exports = {
 
   // @desc    Dashboard
   // @route   GET /dashboard
-  getDashboard: async (req, res) => {
+  getDashboard: (req, res) => {
+    const accountType = req.user.accountType
     try {
       if (!req.user.registrationStatus) {
         res.redirect('/auth/acctRegistration')
       } else {
-        res.render('dashboard-parent.ejs')
+        if (accountType === 'parent') {
+          res.render('dashboard-parent.ejs')
+        } else if (accountType === 'teacher') {
+          res.render('dashboard-teacher.ejs')
+        } else if (accountType === 'admin') {
+          res.render('dashboard-admin.ejs')
+        }
       }
     } catch (error) {
       console.error(error)
@@ -22,10 +29,5 @@ module.exports = {
     }
   },
 
-  // @desc    Dashboard (Parent)
-  // @route   GET /dashboardParent/:id
-  getDashboardParent: async (req, res) => {
-    res.render('dashboard-parent.ejs')
-  }
 }
 

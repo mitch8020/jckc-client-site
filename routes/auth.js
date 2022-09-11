@@ -22,5 +22,6 @@ router.get('/logout', authController.logout)
 router.get('/error/noAccount', authController.noAccount)
 router.get('/acctRegistration', ensureAuth, authController.acctRegistration)
 router.put('/pushRegistration/:id', ensureAuth, authController.pushRegistration)
+router.get('/registrationSuccess/:id', ensureAuth, authController.registrationSuccess)
 
 module.exports = router
