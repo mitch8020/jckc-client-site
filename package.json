@@ -1,6 +1,6 @@
 {
   "name": "jckc-client-site-demo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "app.js",
   "engines": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mitch8020/mood-tracker.git"
+    "url": "git+https://github.com/mitch8020/jckc-client-site.git"
   },
   "author": "JP Mitra",
   "license": "ISC",
