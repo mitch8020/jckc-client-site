@@ -1,22 +1,72 @@
 <%- include('partials/dashboard-head') -%>
 
-  <div class="min-h-full">
-    <!-- Navigation -->
-    <%- include('partials/navigation') -%>
+<div class="min-h-full">
+<!-- Navigation -->
+<%- include('partials/navigation') -%>
 
-    <!-- Header Section -->
-    <%- include('partials/header') -%>
+<!-- Header Section -->
+<%- include('partials/header') -%>
 
-    <!-- Content -->
-    <main>
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-      <!-- Replace with your content -->
-      <div class="px-4 py-4 sm:px-0">
-        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+<!-- Content -->
+<main>
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  
+  <!-- Today's Checked In Students -->
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-xl font-semibold text-gray-900">Today's Checked-In Students:</h1>
       </div>
-      <!-- /End replace -->
-      </div>
-    </main>
+    </div>
+    <div class="-mx-4 mt-4 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Birthday</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Teacher</th>
+            <th scope="col" class="px-10 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+            <!-- <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+              <span class="sr-only">Edit</span>
+            </th> -->
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr>
+            <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+              Lindsay Walton
+              <dl class="font-normal lg:hidden">
+                <dt class="sr-only">Birthday</dt>
+                <dd class="mt-1 truncate text-gray-700">Birthday: 06/06/2022</dd>
+                <dt class="sr-only sm:hidden">Teacher</dt>
+                <dd class="mt-1 truncate text-gray-500 sm:hidden">Teacher: Stacey Smith</dd>
+              </dl>
+            </td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">06/06/2022</td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">Stacey Smith</td>
+            <td class="px-10 py-4 text-sm text-gray-500"> Checked In [TIME]</td>
+            <!-- <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+            </td> -->
+          </tr>
+
+          <!-- More people... -->
+        </tbody>
+      </table>
+    </div>
   </div>
+
+  <!-- Check In Students Link -->
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 -mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+      <div class="w-full inline-flex items-center rounded-full border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 justify-center">
+        <a href="">CHECK IN STUDENTS</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+</div>
 
 <%- include('partials/dashboard-close-tag') -%>
