@@ -7,8 +7,18 @@ module.exports = {
     res.render('index.ejs')
   },
 
-  // @desc    Dashboard
+  // @desc    Redirect Dashboard
   // @route   GET /dashboard
+  redirectDashboard: (req, res) => {
+    try {
+      res.redirect(`/dashboard/${req.user.id}`)
+    } catch (error) {
+      console.error(error)
+    }
+  },
+
+  // @desc    Dashboard
+  // @route   GET /dashboard/:id
   getDashboard: (req, res) => {
     const accountType = req.user.accountType
     try {
@@ -30,4 +40,3 @@ module.exports = {
   },
 
 }
-
