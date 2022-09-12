@@ -1,6 +1,6 @@
 // Mobile Dropdown Menu
-const mobileHam = document.querySelector('button')
-const btnHam = document.querySelectorAll('svg')
+const mobileHam = document.querySelector('#mobile-button')
+const btnHam = document.querySelectorAll('.ham-icon')
 const mobileMenu = document.querySelector('#mobile-menu')
 
 mobileHam.addEventListener('click', () => {
