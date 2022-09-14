@@ -39,4 +39,21 @@ module.exports = {
     }
   },
 
+  // @desc    Profile
+  // @route   GET /profile/:id
+  getProfile: (req, res) => {
+    const accountType = req.user.accountType
+    try {
+      if (accountType === 'parent') {
+        res.render('profile-parent.ejs')
+      } else if (accountType === 'teacher') {
+        res.render('profile-teacher.ejs')
+      } else if (accountType === 'admin') {
+        res.render('profile-admin.ejs')
+      }
+    } catch (error) {
+      console.error(error)
+      // res.render('error/500')
+    }
+  },
 }
