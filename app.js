@@ -56,6 +56,7 @@ app.use(function (req, res, next) {
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+app.use('/students', require('./routes/students'))
 
 // PORT Connection
 app.listen(PORT, ()=>{
