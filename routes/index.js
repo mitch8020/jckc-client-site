@@ -7,5 +7,9 @@ router.get('/', ensureGuest, homeController.getIndex)
 router.get('/dashboard', ensureAuth, homeController.redirectDashboard)
 router.get('/dashboard/:id', ensureAuth, homeController.getDashboard)
 router.get('/profile/:id', ensureAuth, homeController.getProfile)
+router.get('/registerNewStudent', ensureAuth, homeController.registerNewStudent)
+router.post('/pushStudentApplication', ensureAuth, homeController.pushStudentApplication)
+router.get('/studentApplicationSubmitted', ensureAuth, homeController.studentApplicationSubmitted)
+router.get('/studentsSummary', ensureAuth, homeController.getStudentsSummary)
 
 module.exports = router

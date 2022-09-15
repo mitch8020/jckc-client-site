@@ -13,15 +13,21 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  parentFirstName: {
-    type: String
+  studentStreetAddress: {
+    type: String,
+    required: true
   },
-  parentLastName: {
-    type: String
+  studentCity: {
+    type: String,
+    required: true
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+  studentState: {
+    type: String,
+    required: true
+  },
+  studentZIP: {
+    type: String,
+    required: true
   },
   teacher: {
     type: String
@@ -30,12 +36,6 @@ const StudentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  applicationApprovalStatus: {
-    type: Boolean,
-  },
-  checkInStatus: {
-    type: Boolean,
-  }
 })
 
 module.exports = mongoose.model('Student', StudentSchema)
