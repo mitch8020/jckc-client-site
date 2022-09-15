@@ -3,9 +3,7 @@
   <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
   <div class="w-full flex">
     <h2 class="w-1/2 text-3xl tracking-tight font-bold leading-tight text-gray-900">Hello, <%= user.firstNameApp %>!</h2>
-    <% const today = new Date() %>
-    <% let formattedDate = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() %>
-    <h3 class="w-1/2 text-3xl tracking-tight font-bold leading-tight text-gray-900 text-right"><%= formattedDate %></h3>
+    <h3 class="w-1/2 text-3xl tracking-tight font-bold leading-tight text-gray-900 text-right"><%= formatDate() %></h3>
   </div>
   </div>
 </header>
