@@ -32,6 +32,9 @@ const StudentSchema = new mongoose.Schema({
   teacher: {
     type: String
   },
+  classroom: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now
