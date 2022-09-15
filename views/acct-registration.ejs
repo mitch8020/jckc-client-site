@@ -23,12 +23,14 @@
           </div>
           <br>
           <div>
-            <label for="accountType" class="block text-sm font-medium text-gray-700">Account Type</label>
-            <select name="accountType" id="accountType" required>
-              <option value="parent" selected>Parent</option>
-              <option value="teacher">Teacher</option>
-              <option value="admin">Admin</option>
-            </select>
+            <label for="accountType" class="block text-sm font-medium text-gray-700 mb-4">Account Type</label>
+            <div class="mt-1">
+              <select name="accountType" id="accountType" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                <!-- <option value="parent" selected>Parent</option>
+                <option value="teacher">Teacher</option> -->
+                <option value="admin" selected>Admin</option>
+              </select>
+            </div>
           </div>
           <br>
           <div>
@@ -53,6 +55,7 @@
           </div>
           <br>
           <button type="submit" id="registerAcct" class="items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+          <button type="button" class="items-center justify-center rounded-md border border-gray-300 bg-white px-5 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><a href="/auth/logout">Cancel</a></button>
         </form>
       </div>
     </div>
