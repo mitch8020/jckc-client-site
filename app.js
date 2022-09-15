@@ -53,10 +53,58 @@ app.use(function (req, res, next) {
   next()
 })
 
+// Helper Functions
+  /*
+    VARIABLE EXAMPLE
+    app.locals.somevar = "hello world";
+  */
+  /*
+    FUNCTION EXAMPLE
+    app.locals.someHelper = function(name) {
+      return ("hello " + name);
+    }
+  */
+  app.locals.formatDate = function(date) {
+    let dateToFormat, month, day, year
+    if (!date) {
+      dateToFormat = new Date()
+    }
+
+    // Check if input is string or date data type
+    if (typeof date == 'string') {
+      dateToFormat = date.split('-')
+      month = dateToFormat[1]
+      day = dateToFormat[2]
+      year = dateToFormat[0]
+    } else {
+      month = dateToFormat.getMonth() + 1
+      day = dateToFormat.getDate()
+      year = dateToFormat.getFullYear()
+    }
+
+    return `${month}/${day}/${year}`
+  }
+
+  app.locals.convertAge = function(birthday) {
+    const today = new Date()
+    const dateOfBirth = new Date(birthday)
+    let age = ((today - dateOfBirth) / 1000 / 60 / 60 / 24 / 7 / 52)
+    if (age * 12 < 12) {
+      return `${Math.floor(age * 12)} month${Math.floor(age * 12) > 1 ? 's' : ''} old`
+    } else {
+      return `${Math.floor(age)} year${Math.floor(age) > 1 ? 's' : ''} old`
+    }
+  }
+
+  app.locals.properNoun = function(name) {
+    let ans = name.toLowerCase()
+    return ans[0].toUpperCase() + ans.substring(1, ans.length)
+  }
+
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
-app.use('/students', require('./routes/students'))
+app.use('/student', require('./routes/student'))
 
 // PORT Connection
 app.listen(PORT, ()=>{
