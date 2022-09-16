@@ -33,7 +33,8 @@ const StudentSchema = new mongoose.Schema({
     type: String
   },
   classroom: {
-    type: String
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Classroom",
   },
   createdAt: {
     type: Date,
