@@ -1,0 +1,114 @@
+<%- include('partials/dashboard-head') -%>
+
+<div class="min-h-full">
+<!-- Navigation -->
+<%- include('partials/navigation-admin') -%>
+
+<!-- Header Section -->
+<%- include('partials/header') -%>
+
+<!-- Content -->
+<main>
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  
+<!-- Page Title -->
+<h1 class="text-3xl tracking-tight font-bold leading-tight text-gray-900 text-center">Classroom Details</h1>
+
+<br>
+
+<!-- Classroom Details -->
+<div class="px-4 sm:px-6 lg:px-8 grid grid-cols-12 gap-5">
+
+  <div class="overflow-hidden bg-white shadow sm:rounded-lg md:col-span-5 col-span-12">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Classroom Info</h3>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0 col-span-6">
+      <dl class="sm:divide-y sm:divide-gray-200">
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Classroom Name</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= classroom.classroomName %></dd>
+        </div>
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Age Group</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><span class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800"><%= properNoun(classroom.ageGroup) %></span></dd>
+        </div>
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Teacher</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= classroom.teacherName %></dd>
+        </div>
+
+      </dl>
+    </div>
+  </div>
+
+  <div class="overflow-hidden bg-white shadow sm:rounded-lg md:col-span-7 col-span-12">
+    <div class="sm:flex sm:items-center px-4 py-4 sm:px-6">
+      <div class="sm:flex-auto">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Assigned Students</h3>
+      </div>
+      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <a href="/student/registration-student" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ Add Student</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0 col-span-6">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">DOB</th>
+            <th scope="col" class="px-10 py-4 text-left text-sm font-semibold text-gray-900">Age</th>
+            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Edit</span></th>
+          </tr>
+        </thead>
+        <% if (students.length > 0) { %>
+        <tbody class="divide-y divide-gray-200 bg-white">
+
+          <% sortName(students).forEach( e => { %>
+          <tr>
+            <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+              <a href="#"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
+              <dl class="font-normal lg:hidden">
+                <dt class="sr-only"><%= formatDate(e.dateOfBirth) %></dt>
+                <dd class="mt-1 truncate text-gray-700">DOB: <%= formatDate(e.dateOfBirth) %></dd>
+              </dl>
+            </td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= formatDate(e.dateOfBirth) %></td>
+            <td class="px-10 py-4 text-sm text-gray-500"><%= convertAge(e.dateOfBirth) %></td>
+            <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
+            </td>
+          </tr>
+          <% }) %>
+
+        </tbody>
+        <% } else { %>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr>
+            <td class="col-span-4 w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+              No Assigned Students Available
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% } %>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<br>  
+<br>
+
+</div>
+</main>
+</div>
+
+<%- include('partials/dashboard-close-tag') -%>
