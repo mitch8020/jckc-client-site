@@ -43,7 +43,7 @@
           <% sortName(students).forEach( e => { %>
           <tr>
             <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-              <a href="#"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
+              <a href="/student/details/<%= e.id %>"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
               <dl class="font-normal lg:hidden">
                 <dt class="sr-only"><%= formatDate(e.dateOfBirth) %></dt>
                 <dd class="mt-1 truncate text-gray-700">DOB: <%= formatDate(e.dateOfBirth) %></dd>
@@ -55,7 +55,7 @@
             <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= convertAge(e.dateOfBirth) %></td>
             <td class="px-10 py-4 text-sm text-gray-500"><%= e.teacher ? e.teacher : 'Not Assigned' %></td>
             <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
+              <a href="/student/edit/<%= e.id %>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
             </td>
           </tr>
           <% }) %>

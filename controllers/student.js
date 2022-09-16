@@ -2,25 +2,6 @@ const User = require('../models/User')
 const Student = require('../models/Student')
 
 module.exports = {
-  // @desc    Get Individual Student Profile
-  // @route   GET /student/profile/:id
-  getStudent: async (req, res) => {
-    const accountType = req.user.accountType
-    try {
-      if (accountType === 'parent') {
-        const students = await Student.find({ user: req.user.id });
-        res.render('students-summary-parent.ejs', { students: students, user: req.user })
-      } else if (accountType === 'teacher') {
-        res.render('students-summary-teacher.ejs')
-      } else if (accountType === 'admin') {
-        res.render('students-summary-admin.ejs')
-      }
-    } catch (error) {
-      console.error(error)
-      // res.render('error/500')
-    }
-  },
-
   // @desc    Show New Student Registration Page
   // @route   GET /student/register-new-student
   registerNewStudent: (req, res) => {
@@ -85,4 +66,16 @@ module.exports = {
     }
   },
 
+  // @desc    Get Individual Student Profile
+  // @route   GET /student/details/:id
+  getStudentDetails: async (req, res) => {
+    const accountType = req.user.accountType
+    try {
+      const student = await Student.findById(req.params.id);
+      res.render('students-details.ejs', { student: student })
+    } catch (error) {
+      console.error(error)
+      // res.render('error/500')
+    }
+  },
 }

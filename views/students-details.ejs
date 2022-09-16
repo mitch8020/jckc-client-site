@@ -1,0 +1,68 @@
+<%- include('partials/dashboard-head') -%>
+
+<div class="min-h-full">
+<!-- Navigation -->
+<%- include('partials/navigation-admin') -%>
+
+<!-- Header Section -->
+<%- include('partials/header') -%>
+
+<!-- Content -->
+<main>
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  
+<!-- Page Title -->
+<h1 class="text-3xl tracking-tight font-bold leading-tight text-gray-900 text-center">Student Details</h1>
+
+<br>
+
+<!-- Classroom Details -->
+<div class="px-4 sm:px-6 lg:px-8 grid grid-cols-12 gap-5">
+
+  <div class="overflow-hidden bg-white shadow sm:rounded-lg col-span-12">
+    <div class="sm:flex sm:items-center px-4 py-4 sm:px-6">
+      <div class="sm:flex-auto">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Student Info</h3>
+      </div>
+      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <a href="/student/edit/<%= student.id %>" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit Info</a>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0 col-span-6">
+      <dl class="sm:divide-y sm:divide-gray-200">
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Student Name</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= student.studentFirstName + ' ' + student.studentLastName %></dd>
+        </div>
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Date of Birth</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= formatDate(student.dateOfBirth) %></dd>
+        </div>
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Age</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= convertAge(student.dateOfBirth) %></dd>
+        </div>
+
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Student Address</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= student.studentStreetAddress + ', ' + student.studentCity + ', ' + student.studentState + ' ' + student.studentZIP %></dd>
+        </div>
+
+      </dl>
+    </div>
+  </div>
+
+</div>
+
+<br>  
+<br>
+
+</div>
+</main>
+</div>
+
+<%- include('partials/dashboard-close-tag') -%>
