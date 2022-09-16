@@ -47,7 +47,7 @@ module.exports = {
         studentZIP: req.body.studentZIP,
       })
       console.log("Student Application Submitted!");
-      res.redirect(`/student/student-application-submitted`)
+      res.redirect(`/student/registration-student-success`)
     } catch (error) {
       console.log(error)
       // res.render('error/500')
