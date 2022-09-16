@@ -29,7 +29,10 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  teacher: {
+  teacherName: {
+    type: String
+  },
+  ageGroup: {
     type: String
   },
   classroom: {
