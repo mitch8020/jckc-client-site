@@ -9,11 +9,11 @@ module.exports = {
     try {
       if (accountType === 'parent') {
         const students = await Student.find({ user: req.user.id });
-        res.render('students-parent.ejs', { students: students, user: req.user })
+        res.render('students-summary-parent.ejs', { students: students, user: req.user })
       } else if (accountType === 'teacher') {
-        res.render('students-teacher.ejs')
+        res.render('students-summary-teacher.ejs')
       } else if (accountType === 'admin') {
-        res.render('students-admin.ejs')
+        res.render('students-summary-admin.ejs')
       }
     } catch (error) {
       console.error(error)
@@ -25,13 +25,12 @@ module.exports = {
   // @route   GET /student/register-new-student
   registerNewStudent: (req, res) => {
     try {
-      res.render('student-registration.ejs')
+      res.render('registration-student.ejs')
     } catch (error) {
       console.error(error)
       // res.render('error/500')
     }
   },
-
   
   // @desc    Push Student Registration
   // @route   POST /student/push-student-application
@@ -59,7 +58,7 @@ module.exports = {
   // @route   GET /student/student-application-submitted
   studentApplicationSubmitted: (req, res) => {
     try {
-      res.render('student-registration-success.ejs')
+      res.render('registration-student-success.ejs')
     } catch (error) {
       console.error(error)
       // res.render('error/500')
@@ -73,12 +72,12 @@ module.exports = {
     try {
       if (accountType === 'parent') {
         const students = await Student.find({ user: req.user.id });
-        res.render('students-parent.ejs', { students: students, user: req.user })
+        res.render('students-summary-parent.ejs', { students: students, user: req.user })
       } else if (accountType === 'teacher') {
-        res.render('students-teacher.ejs')
+        res.render('students-summary-teacher.ejs')
       } else if (accountType === 'admin') {
         const students = await Student.find();
-        res.render('students-admin.ejs', { students: students })
+        res.render('students-summary-admin.ejs', { students: students })
       }
     } catch (error) {
       console.error(error)

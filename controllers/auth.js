@@ -20,7 +20,7 @@ exports.noAccount = (req, res) => {
 // @desc    Register Account
 // @route   GET /auth/acctRegistration
 exports.acctRegistration = (req, res) => {
-  res.render('acct-registration.ejs')
+  res.render('registration-user.ejs')
 }
 
 // @desc    Push Account Registration
@@ -63,5 +63,5 @@ exports.pushRegistration = async (req, res) => {
 // @desc    Get Registration Success Page
 // @route   GET /auth/registrationSuccess
 exports.registrationSuccess = (req, res) => {
-  res.render('registration-success.ejs')
+  res.render('registration-user-success.ejs')
 }
