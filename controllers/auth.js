@@ -54,7 +54,7 @@ exports.pushRegistration = async (req, res) => {
         { adminPermission: true }
     )}
     console.log("Account Registered!");
-    res.redirect(`/auth/registrationSuccess/${req.params.id}`)
+    res.redirect(`/auth/registration-success/${req.params.id}`)
   } catch (error) {
     console.log(error)
   }

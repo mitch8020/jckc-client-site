@@ -24,7 +24,7 @@ module.exports = {
     const accountType = req.user.accountType
     try {
       if (!req.user.registrationStatus) {
-        res.redirect('/auth/acctRegistration')
+        res.redirect('/auth/acct-registration')
       } else {
         if (accountType === 'parent') {
           res.render('dashboard-parent.ejs')
@@ -86,7 +86,7 @@ module.exports = {
         studentZIP: req.body.studentZIP,
       })
       console.log("Student Application Submitted!");
-      res.redirect(`/studentApplicationSubmitted`)
+      res.redirect(`/student-application-submitted`)
     } catch (error) {
       console.log(error)
       // res.render('error/500')

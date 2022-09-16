@@ -7,7 +7,7 @@
     <div class="bg-white">
       <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <h2 class="inline text-3xl font-bold tracking-tight text-gray-900 sm:block sm:text-4xl">Register your JCKC Account</h2>
-        <form action="/auth/pushRegistration/<%= user.id %>?_method=PUT" method="POST" class="mt-8">
+        <form action="/auth/push-registration/<%= user.id %>?_method=PUT" method="POST" class="mt-8">
           <div>
             <label for="firstNameApp" class="block text-sm font-medium text-gray-700">First Name</label>
             <div class="mt-1">
@@ -55,7 +55,7 @@
           </div>
           <br>
           <button type="submit" id="registerAcct" class="items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
-          <button type="button" class="items-center justify-center rounded-md border border-gray-300 bg-white px-5 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><a href="/auth/logout">Cancel</a></button>
+          <a href="/auth/logout"><button type="button" class="items-center justify-center rounded-md border border-gray-300 bg-white px-5 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button></a>
         </form>
       </div>
     </div>

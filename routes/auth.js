@@ -10,18 +10,18 @@ router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
 
 // @desc    Google Auth Callback
 // @route   GET /auth/google/callback
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/auth/error/noAccount' }), async (req, res) => {
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/auth/error/no-account' }), async (req, res) => {
   if (!req.user.registrationStatus) {
-    res.redirect('/auth/acctRegistration')
+    res.redirect('/auth/acct-registration')
   } else {
     res.redirect('/dashboard')
   }
 })
 
 router.get('/logout', authController.logout)
-router.get('/error/noAccount', authController.noAccount)
-router.get('/acctRegistration', ensureAuth, authController.acctRegistration)
-router.put('/pushRegistration/:id', ensureAuth, authController.pushRegistration)
-router.get('/registrationSuccess/:id', ensureAuth, authController.registrationSuccess)
+router.get('/error/no-account', authController.noAccount)
+router.get('/acct-registration', ensureAuth, authController.acctRegistration)
+router.put('/push-registration/:id', ensureAuth, authController.pushRegistration)
+router.get('/registration-success/:id', ensureAuth, authController.registrationSuccess)
 
 module.exports = router
