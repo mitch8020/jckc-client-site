@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Student = require('../models/Student')
+const Classroom = require('../models/Classroom')
 
 module.exports = {
   // @desc    Login/Landing Page
@@ -32,7 +33,8 @@ module.exports = {
           res.render('dashboard-teacher.ejs')
         } else if (accountType === 'admin') {
           const students = await Student.find();
-          res.render('dashboard-admin.ejs', { students: students })
+          const classrooms = await Classroom.find();
+          res.render('dashboard-admin.ejs', { students: students, classrooms: classrooms })
         }
       }
     } catch (error) {

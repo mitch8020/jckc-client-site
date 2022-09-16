@@ -20,10 +20,10 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Student Summary</h1>
+        <h1 class="text-xl font-semibold text-gray-900">Students Summary</h1>
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <a href="/student/register-new-student" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ New Student</a>
+        <a href="/student/registration-student" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ New Student</a>
       </div>
     </div>
     <div class="bg-gray-50 -mx-4 mt-4 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
@@ -43,53 +43,27 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Assigned Teachers</h1>
+        <h1 class="text-xl font-semibold text-gray-900">Classrooms Summary</h1>
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <a href="#" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</a>
+        <a href="/classroom/classrooms-summary" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit</a>
       </div>
     </div>
     <div class="-mx-4 mt-1 overflow-hidden sm:-mx-6 md:mx-0">
-      <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+      <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <% sortClassrooms(classrooms).forEach(e => { %> 
         <li class="col-span-1 flex rounded-md shadow-sm">
-          <div class="flex-shrink-0 flex items-center justify-center w-16 bg-pink-600 text-white text-sm font-medium rounded-l-md">INF</div>
+          <% bgColor = e.ageGroup == 'infant' ? 'bg-pink-600' : e.ageGroup == 'toddler' ? 'bg-yellow-500' : 'bg-green-500' %>
+          <div class="flex-shrink-0 flex items-center justify-center w-16 <%= bgColor %> text-white text-sm font-medium rounded-l-md"><%= e.ageGroup.substring(0,3).toUpperCase() %></div>
           <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
             <div class="flex-1 truncate px-4 py-2 text-sm">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-600">Infants</a>
-              <p class="text-gray-500">Tiffany Haddish</p>
+              <a href="#" class="mr-2 font-medium text-gray-900 hover:text-gray-600"><%= e.classroomName %></a><span class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800"><%= properNoun(e.ageGroup) %></span>
+              <p class="text-gray-500"><%= e.teacherName %></p>
+              <p class="text-gray-500">No. of Students: ???</p>
             </div>
           </div>
         </li>
-
-        <li class="col-span-1 flex rounded-md shadow-sm">
-          <div class="flex-shrink-0 flex items-center justify-center w-16 bg-purple-600 text-white text-sm font-medium rounded-l-md">TOD</div>
-          <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
-            <div class="flex-1 truncate px-4 py-2 text-sm">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-600">Toddlers</a>
-              <p class="text-gray-500">Robert De Niro</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="col-span-1 flex rounded-md shadow-sm">
-          <div class="flex-shrink-0 flex items-center justify-center w-16 bg-yellow-500 text-white text-sm font-medium rounded-l-md">PRE</div>
-          <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
-            <div class="flex-1 truncate px-4 py-2 text-sm">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-600">Preschoolers</a>
-              <p class="text-gray-500">Ashley Tisdale</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="col-span-1 flex rounded-md shadow-sm">
-          <div class="flex-shrink-0 flex items-center justify-center w-16 bg-green-500 text-white text-sm font-medium rounded-l-md">PRE</div>
-          <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
-            <div class="flex-1 truncate px-4 py-2 text-sm">
-              <a href="#" class="font-medium text-gray-900 hover:text-gray-600">Preschoolers</a>
-              <p class="text-gray-500">Vannessa Hudgens</p>
-            </div>
-          </div>
-        </li>
+        <% }) %>
       </ul>
     </div>
 
