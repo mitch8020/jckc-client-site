@@ -101,10 +101,27 @@ app.use(function (req, res, next) {
     return ans[0].toUpperCase() + ans.substring(1, ans.length)
   }
 
+  app.locals.sortClassrooms = function(objArray) {
+    return objArray.sort((a,b) => {
+      if ((a.ageGroup == 'infant' && b.ageGroup == 'toddler') || (a.ageGroup == 'toddler' && b.ageGroup == 'preschool')) {
+        return -1
+      } else if ((a.ageGroup == 'preschool' && b.ageGroup == 'toddler') || (a.ageGroup == 'toddler' && b.ageGroup == 'infant')) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+  }
+
+  app.locals.sortName = function(objArray) {
+    return objArray.sort((a,b) => (a.studentFirstName).localeCompare(b.studentFirstName))
+  }
+
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/student', require('./routes/student'))
+app.use('/classroom', require('./routes/classroom'))
 
 // PORT Connection
 app.listen(PORT, ()=>{
