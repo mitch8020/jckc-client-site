@@ -84,7 +84,7 @@
             <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= formatDate(e.dateOfBirth) %></td>
             <td class="px-10 py-4 text-sm text-gray-500"><%= convertAge(e.dateOfBirth) %></td>
             <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
+              <a href="/student/edit/<%= e.id %>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
             </td>
           </tr>
           <% }) %>
