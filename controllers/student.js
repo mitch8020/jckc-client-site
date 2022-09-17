@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Student = require('../models/Student')
+const Classroom = require('../models/Classroom')
 
 module.exports = {
   // @desc    Show New Student Registration Page
@@ -57,8 +58,9 @@ module.exports = {
       } else if (accountType === 'teacher') {
         res.render('students-summary-teacher.ejs')
       } else if (accountType === 'admin') {
+        const classrooms = await Classroom.find();
         const students = await Student.find();
-        res.render('students-summary-admin.ejs', { students: students })
+        res.render('students-summary-admin.ejs', { classrooms: classrooms, students: students })
       }
     } catch (error) {
       console.error(error)
