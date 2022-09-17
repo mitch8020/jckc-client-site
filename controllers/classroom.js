@@ -57,4 +57,36 @@ module.exports = {
     }
   },
 
+  // @desc    Show Edit Classroom Details Page
+  // @route   GET /classroom/edit/:id
+  getClassroomsDetailsEdit: async (req, res) => {
+    try {
+      const classroom = await Classroom.findById(req.params.id);
+      res.render('classrooms-details-edit.ejs', { classroom: classroom })
+    } catch (error) {
+      console.error(error)
+      // res.render('error/500')
+    }
+  },
+
+  // @desc    Push Edit Classroom Details
+  // @route   PUT /classroom/push-classroom-details-edit/:id
+  pushClassroomsDetailsEdit: async (req, res) => {
+    try {
+      await Classroom.findOneAndUpdate(
+        { _id: req.params.id },
+        { 
+          classroomName: req.body.classroomName,
+          ageGroup: req.body.ageGroup,
+          teacherName: req.body.teacherName,
+        }
+      );      
+      console.log("Classroom Info Updated!");
+      res.redirect(`/classroom/details/${req.params.id}`)
+    } catch (error) {
+      console.log(error)
+      // res.render('error/500')
+    }
+  },
+
 }
