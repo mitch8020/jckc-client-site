@@ -8,5 +8,7 @@ router.post('/push-registration-student', ensureAuth, studentsController.pushStu
 router.get('/registration-student-success', ensureAuth, studentsController.studentApplicationSubmitted)
 router.get('/students-summary', ensureAuth, studentsController.getStudentsSummary)
 router.get('/details/:id', ensureAuth, studentsController.getStudentDetails)
+router.get('/edit/:id', ensureAuth, studentsController.getStudentDetailsEdit)
+router.put('/push-student-details-edit/:id', ensureAuth, studentsController.pushStudentDetailsEdit)
 
 module.exports = router

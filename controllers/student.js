@@ -69,7 +69,6 @@ module.exports = {
   // @desc    Get Individual Student Profile
   // @route   GET /student/details/:id
   getStudentDetails: async (req, res) => {
-    const accountType = req.user.accountType
     try {
       const student = await Student.findById(req.params.id);
       res.render('students-details.ejs', { student: student })
@@ -78,4 +77,40 @@ module.exports = {
       // res.render('error/500')
     }
   },
+
+  // @desc    Get Individual Student Profile Edit Page
+  // @route   GET /student/edit/:id
+  getStudentDetailsEdit: async (req, res) => {
+    try {
+      const student = await Student.findById(req.params.id);
+      res.render('students-details-edit.ejs', { student: student })
+    } catch (error) {
+      console.error(error)
+      // res.render('error/500')
+    }
+  },
+
+  // @desc    Push Update for Individual Student Profile
+  // @route   PUT /student/push-student-details-edit/:id
+  pushStudentDetailsEdit: async (req, res) => {
+    try {
+      await Student.findOneAndUpdate(
+        { _id: req.params.id },
+        { 
+          studentFirstName: req.body.studentFirstName,
+          studentLastName: req.body.studentLastName,
+          dateOfBirth: req.body.dateOfBirth,
+          studentStreetAddress: req.body.studentStreetAddress,
+          studentCity: req.body.studentCity,
+          studentState: req.body.studentState,
+          studentZIP: req.body.studentZIP,
+        }
+      );
+      console.log("Student Info Updated!");
+      res.redirect(`/student/details/${req.params.id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
 }
