@@ -9,5 +9,8 @@ router.post('/push-classrooms-add-new', ensureAuth, classroomsController.pushCla
 router.get('/details/:id', ensureAuth, classroomsController.getClassroomsDetails)
 router.get('/edit/:id', ensureAuth, classroomsController.getClassroomsDetailsEdit)
 router.put('/push-classroom-details-edit/:id', ensureAuth, classroomsController.pushClassroomsDetailsEdit)
+router.get('/edit-student-list/:id', ensureAuth, classroomsController.getClassroomsStudentListEdit)
+router.put('/push-student-list-add/:id', ensureAuth, classroomsController.pushClassroomsStudentListAdd)
+router.put('/push-student-list-remove/:id', ensureAuth, classroomsController.pushClassroomsStudentListRemove)
 
 module.exports = router

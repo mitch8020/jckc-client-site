@@ -1,0 +1,120 @@
+<%- include('partials/dashboard-head') -%>
+
+<div class="min-h-full">
+<!-- Navigation -->
+<%- include('partials/navigation-admin') -%>
+
+<!-- Content -->
+<main>
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  
+<!-- Page Title -->
+<h1 class="px-2 text-3xl tracking-tight font-bold leading-tight text-gray-900 text-center">Add / Remove Students</h1>
+<h2 class="px-2 pt-4 text-2xl tracking-tight font-semibold leading-tight text-gray-900 text-center">Classroom: <%= classroom.classroomName %></h2>
+<h2 class="px-2 pt-4 text-2xl tracking-tight font-semibold leading-tight text-gray-900 text-center">Age Group: <%= properNoun(classroom.ageGroup) %></h2>
+
+<br>
+
+<div class="mx-auto max-w-screen-xl px-4 pb-6 sm:px-6 lg:px-8 lg:pb-16 grid grid-cols-12 gap-5">
+
+<!-- Add Students to Classroom -->
+<div class="overflow-hidden rounded-lg bg-white shadow md:col-span-6 col-span-12">
+  <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+    <form class="divide-y divide-gray-200 lg:col-span-12" action="/classroom/push-student-list-add/<%= classroom.id %>?_method=PUT" method="POST">
+      
+      <div class="py-6 px-4 sm:p-6 lg:pb-8">
+
+        <div class="mt-2">
+          <fieldset>
+            <legend class="text-lg font-medium text-gray-900">Add Students</legend>
+            <% if (students.filter(e => calcAgeGroup(e.dateOfBirth) == classroom.ageGroup && !e.classroom).length > 0) { %>
+            <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+              <% sortName(students).forEach(e => { %>
+              <% if (calcAgeGroup(e.dateOfBirth) == classroom.ageGroup && !e.classroom) { %>
+              <div class="relative flex items-start py-4">
+                <div class="min-w-0 flex-1 text-sm">
+                  <label for="<%= e.id %>" class="select-none font-medium text-gray-700"><%= e.studentFirstName + ' ' + e.studentLastName + ', ' + convertAge(e.dateOfBirth) %></label>
+                </div>
+                <div class="ml-3 flex h-5 items-center">
+                  <input id="<%= e.id %>" name="<%= e.id %>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                </div>
+              </div>
+              <% } %>                
+              <% }) %>
+            </div>
+            <% } else { %>
+            <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+              <p class="text-gray-900 p-3">No Students Available</p>
+            </div>
+            <% } %>
+          </fieldset>
+
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <% if (students.filter(e => calcAgeGroup(e.dateOfBirth) == classroom.ageGroup && !e.classroom).length > 0) { %>
+      <div class="col-span-12 flex justify-end mt-4 flex py-4 px-4 sm:px-6">
+        <a href="/classroom/details/<%= classroom.id %>"><button type="button" class="ml-5 inline-flex justify-center rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-sky-700 shadow-sm hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Cancel</button></a>
+        <button type="submit" class="ml-5 inline-flex justify-center rounded-md border border-transparent bg-sky-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Add</button>
+      </div>
+      <% } %>
+
+    </form>
+  </div>
+</div>
+
+<!-- Remove Students from Classroom -->
+<div class="overflow-hidden rounded-lg bg-white shadow md:col-span-6 col-span-12">
+  <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+    <form class="divide-y divide-gray-200 lg:col-span-12" action="/classroom/push-student-list-remove/<%= classroom.id %>?_method=PUT" method="POST">
+      
+      <div class="py-6 px-4 sm:p-6 lg:pb-8">
+
+        <div class="mt-2">
+          <fieldset>
+            <legend class="text-lg font-medium text-gray-900">Remove Students</legend>
+            <% if (students.filter(e => classroom.id == e.classroom).length > 0) { %>
+            <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+              <% sortName(students).forEach(e => { %>
+              <% if (classroom.id == e.classroom) { %>
+              <div class="relative flex items-start py-4">
+                <div class="min-w-0 flex-1 text-sm">
+                  <label for="<%= e.id %>" class="select-none font-medium text-gray-700"><%= e.studentFirstName + ' ' + e.studentLastName + ', ' + convertAge(e.dateOfBirth) %></label>
+                </div>
+                <div class="ml-3 flex h-5 items-center">
+                  <input id="<%= e.id %>" name="<%= e.id %>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                </div>
+              </div>
+              <% } %>                
+              <% }) %>
+            </div>
+            <% } else { %>
+            <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+              <p class="text-gray-900 p-3">No Students Available</p>
+            </div>
+            <% } %>
+          </fieldset>
+
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <% if (students.filter(e => classroom.id == e.classroom).length > 0) { %>
+      <div class="col-span-12 flex justify-end mt-4 flex py-4 px-4 sm:px-6">
+        <a href="/classroom/details/<%= classroom.id %>"><button type="button" class="ml-5 inline-flex justify-center rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-sky-700 shadow-sm hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Cancel</button></a>
+        <button type="submit" class="ml-5 inline-flex justify-center rounded-md border border-transparent bg-sky-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Remove</button>
+      </div>
+      <% } %>
+
+    </form>
+  </div>
+</div>
+
+</div>
+
+</div>
+</main>
+</div>
+
+<%- include('partials/dashboard-close-tag') -%>
