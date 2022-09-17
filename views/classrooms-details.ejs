@@ -56,7 +56,7 @@
         <h3 class="text-lg font-medium leading-6 text-gray-900">Assigned Students</h3>
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <a href="#" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ Add Student</a>
+        <a href="/classroom/edit-student-list/<%= classroom.id %>" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit Student List</a>
       </div>
     </div>
     <div class="border-t border-gray-200 px-4 py-5 sm:p-0 col-span-6">
@@ -75,7 +75,7 @@
           <% sortName(students).forEach( e => { %>
           <tr>
             <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-              <a href="#"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
+              <a href="/student/details/<%= e.id %>"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
               <dl class="font-normal lg:hidden">
                 <dt class="sr-only"><%= formatDate(e.dateOfBirth) %></dt>
                 <dd class="mt-1 truncate text-gray-700">DOB: <%= formatDate(e.dateOfBirth) %></dd>
