@@ -85,6 +85,19 @@ app.use(function (req, res, next) {
     return `${month}/${day}/${year}`
   }
 
+  app.locals.calcAgeGroup = function(birthday) {
+    const today = new Date()
+    const dateOfBirth = new Date(birthday)
+    let age = (today - dateOfBirth) / 1000 / 60 / 60 / 24 / 365
+    if (age * 12 < 11) {
+      return 'infant'
+    } else if (age * 12 < 30) {
+      return 'toddler'
+    } else {
+      return 'preschool'
+    }
+  }
+
   app.locals.convertAge = function(birthday) {
     const today = new Date()
     const dateOfBirth = new Date(birthday)
