@@ -88,8 +88,10 @@ app.use(function (req, res, next) {
   app.locals.convertAge = function(birthday) {
     const today = new Date()
     const dateOfBirth = new Date(birthday)
-    let age = ((today - dateOfBirth) / 1000 / 60 / 60 / 24 / 7 / 52)
-    if (age * 12 < 12) {
+    let age = ((today - dateOfBirth) / 1000 / 60 / 60 / 24 / 365)
+    if (age * 12 < 1) {
+      return `${Math.floor(age * 52)} week${Math.floor(age * 52) > 1 ? 's' : ''} old`
+    } else if (age * 12 < 12) {
       return `${Math.floor(age * 12)} month${Math.floor(age * 12) > 1 ? 's' : ''} old`
     } else {
       return `${Math.floor(age)} year${Math.floor(age) > 1 ? 's' : ''} old`
@@ -102,7 +104,8 @@ app.use(function (req, res, next) {
   }
 
   app.locals.sortClassrooms = function(objArray) {
-    return objArray.sort((a,b) => {
+    return objArray.sort((a,b) => (a.classroomName).localeCompare(b.classroomName))
+    .sort((a,b) => {
       if ((a.ageGroup == 'infant' && b.ageGroup == 'toddler') || (a.ageGroup == 'toddler' && b.ageGroup == 'preschool')) {
         return -1
       } else if ((a.ageGroup == 'preschool' && b.ageGroup == 'toddler') || (a.ageGroup == 'toddler' && b.ageGroup == 'infant')) {
