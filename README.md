@@ -1,15 +1,18 @@
-# mood-tracker
+# jckc-client-site
 
 ## Versions & Future Functionality:
 
 Client App for JCKC
 
 Goals / Work-In-Progress:
-- Create Classrooms Page w/ Summary of Students for Each Classroom
-- Add 'Edit' Student Profile
-- Add Assign Classroom / Teacher Feature
 - Add Report Generation Feature for Sign-In Sheets
 - Add Report Generation Feature for Roll Call Sheets
+
+Version 0.00.03 (2022-09-17):
+- Completed Classrooms Page w/ Summary of Students for Each Classroom
+- Completed 'Edit' Student Profile
+- Completed 'Edit Classroom Info
+- Added Assign Students to Classroom Feature
 
 Version 0.00.02 (2022-09-15):
 - Completed Admin Dashboard
