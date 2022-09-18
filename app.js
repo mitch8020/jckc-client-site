@@ -138,6 +138,7 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/student', require('./routes/student'))
 app.use('/classroom', require('./routes/classroom'))
+app.use('/report', require('./routes/report'))
 
 // PORT Connection
 app.listen(PORT, ()=>{
