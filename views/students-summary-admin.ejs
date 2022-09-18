@@ -11,75 +11,75 @@
 <main>
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
   
-  <!-- Page Title -->
-  <h1 class="text-3xl tracking-tight font-bold leading-tight text-gray-900 text-center">Students Summary</h1>
+<!-- Page Title -->
+<h1 class="text-3xl tracking-tight font-bold leading-tight text-gray-900 text-center">Students Summary</h1>
 
-  <br>
+<br>
 
-  <!-- Registered Students -->
-  <div class="px-4 sm:px-6 lg:px-8">
-    <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Registered Students</h1>
-      </div>
-      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <a href="/student/registration-student" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ New Student</a>
-      </div>
+<!-- Registered Students -->
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-900">Registered Students</h1>
     </div>
-    <div class="-mx-4 mt-4 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
-      <table class="min-w-full divide-y divide-gray-300">
-        <thead class="bg-gray-50">
-          <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">DOB</th>
-            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Age</th>
-            <th scope="col" class="px-10 py-4 text-left text-sm font-semibold text-gray-900">Teacher</th>
-            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Edit</span></th>
-          </tr>
-        </thead>
-        <% if (students.length > 0) { %>
-        <tbody class="divide-y divide-gray-200 bg-white">
-
-          <% sortName(students).forEach( e => { %>
-          <tr>
-            <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-              <a href="/student/details/<%= e.id %>"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
-              <dl class="font-normal lg:hidden">
-                <dt class="sr-only"><%= formatDate(e.dateOfBirth) %></dt>
-                <dd class="mt-1 truncate text-gray-700">DOB: <%= formatDate(e.dateOfBirth) %></dd>
-                <dt class="sr-only sm:hidden"><%= convertAge(e.dateOfBirth) %></dt>
-                <dd class="mt-1 truncate text-gray-500 sm:hidden">Age: <%= convertAge(e.dateOfBirth) %></dd>
-              </dl>
-            </td>
-            <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= formatDate(e.dateOfBirth) %></td>
-            <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= convertAge(e.dateOfBirth) %></td>
-            <td class="px-10 py-4 text-sm text-gray-500"><%= e.classroom ? classrooms.find(room => room.id == e.classroom).teacherName : 'Not Assigned' %></td>
-            <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-              <a href="/student/edit/<%= e.id %>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
-            </td>
-          </tr>
-          <% }) %>
-
-        </tbody>
-        <% } else { %>
-        <tbody class="divide-y divide-gray-200 bg-white">
-          <tr>
-            <td class="col-span-4 w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-              No Registered Students Available
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <% } %>
-      </table>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <a href="/student/registration-student" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ New Student</a>
     </div>
   </div>
+  <div class="-mx-4 mt-4 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+    <table class="min-w-full divide-y divide-gray-300">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">DOB</th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Age</th>
+          <th scope="col" class="px-10 py-4 text-left text-sm font-semibold text-gray-900">Teacher</th>
+          <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Edit</span></th>
+        </tr>
+      </thead>
+      <% if (students.length > 0) { %>
+      <tbody class="divide-y divide-gray-200 bg-white">
 
-  <br>
-  <br>
+        <% sortName(students).forEach( e => { %>
+        <tr>
+          <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+            <a href="/student/details/<%= e.id %>"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
+            <dl class="font-normal lg:hidden">
+              <dt class="sr-only"><%= formatDate(e.dateOfBirth) %></dt>
+              <dd class="mt-1 truncate text-gray-700">DOB: <%= formatDate(e.dateOfBirth) %></dd>
+              <dt class="sr-only sm:hidden"><%= convertAge(e.dateOfBirth) %></dt>
+              <dd class="mt-1 truncate text-gray-500 sm:hidden">Age: <%= convertAge(e.dateOfBirth) %></dd>
+            </dl>
+          </td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= formatDate(e.dateOfBirth) %></td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= convertAge(e.dateOfBirth) %></td>
+          <td class="px-10 py-4 text-sm text-gray-500"><%= e.classroom ? classrooms.find(room => room.id == e.classroom).teacherName : 'Not Assigned' %></td>
+          <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+            <a href="/student/edit/<%= e.id %>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
+          </td>
+        </tr>
+        <% }) %>
+
+      </tbody>
+      <% } else { %>
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <tr>
+          <td class="col-span-4 w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+            No Registered Students Available
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+      <% } %>
+    </table>
+  </div>
+</div>
+
+<br>
+<br>
 
 </div>
 </main>
