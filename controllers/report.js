@@ -103,8 +103,18 @@ module.exports = {
         content: [
           { text: 'JC KIDZ CLUBHOUSE', style: 'header', alignment: 'center' },
           { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
-          { text: today, style: 'subheader' },
-          { text: 'Age Group: INFANTS', style: 'subheader' },
+          {
+            style: 'tableExample',
+            table: {
+              widths: ['*','*'],
+              body: [
+                [
+                  { text: today, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Age Group: INFANTS`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
+                ],
+              ]
+            }
+          },
           {
             style: 'tableExample',
             table: {
@@ -115,8 +125,18 @@ module.exports = {
           },
           { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' },
           { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
-          { text: today, style: 'subheader' },
-          { text: 'Age Group: TODDLERS', style: 'subheader' },
+          {
+            style: 'tableExample',
+            table: {
+              widths: ['*','*'],
+              body: [
+                [
+                  { text: today, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Age Group: TODDLERS`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
+                ],
+              ]
+            }
+          },
           {
             style: 'tableExample',
             table: {
@@ -127,8 +147,18 @@ module.exports = {
           },
           { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' },
           { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
-          { text: today, style: 'subheader' },
-          { text: 'Age Group: PRESCHOOLERS', style: 'subheader' },
+          {
+            style: 'tableExample',
+            table: {
+              widths: ['*','*'],
+              body: [
+                [
+                  { text: today, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Age Group: PRESCHOOLERS`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
+                ],
+              ]
+            }
+          },
           {
             style: 'tableExample',
             table: {
