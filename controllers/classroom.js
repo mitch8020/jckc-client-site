@@ -112,6 +112,7 @@ module.exports = {
         await Student.findOneAndUpdate(
           { _id: e },
           { 
+            ageGroup: classroom.ageGroup,
             classroom: classroom.id,
           }
         );
