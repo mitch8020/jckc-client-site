@@ -2,9 +2,9 @@
 
 ## Versions & Future Functionality:
 
-Client App for JCKC
+Client App for JCKC (Daycare Business)
 
-Goals / Work-In-Progress:
+GOALS / WORK-IN PROGRESS:
 - PROJECT COMPLETE
 
 Version 1.00.00 (2022-09-22):
