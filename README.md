@@ -5,8 +5,11 @@
 Client App for JCKC
 
 Goals / Work-In-Progress:
-- Add Report Generation Feature for Sign-In Sheets
-- Add Report Generation Feature for Roll Call Sheets
+* * * P R O J E C T   C O M P L E T E * * *
+
+Version 1.00.00 (2022-09-22):
+- Completed Report Generation Feature for Sign-In Sheets
+- Completed Report Generation Feature for Roll Call Sheets
 
 Version 0.00.03 (2022-09-17):
 - Completed Classrooms Page w/ Summary of Students for Each Classroom
