@@ -5,7 +5,7 @@
 Client App for JCKC
 
 Goals / Work-In-Progress:
-'* * * P R O J E C T   C O M P L E T E * * *'
+- PROJECT COMPLETE
 
 Version 1.00.00 (2022-09-22):
 - Completed Report Generation Feature for Sign-In Sheets
