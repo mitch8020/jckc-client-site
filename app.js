@@ -104,10 +104,8 @@ app.use(function (req, res, next) {
     let age = ((today - dateOfBirth) / 1000 / 60 / 60 / 24 / 365)
     if (age * 12 < 1) {
       return `${Math.floor(age * 52)} week${Math.floor(age * 52) > 1 ? 's' : ''} old`
-    } else if (age * 12 < 12) {
-      return `${Math.floor(age * 12)} month${Math.floor(age * 12) > 1 ? 's' : ''} old`
     } else {
-      return `${Math.floor(age)} year${Math.floor(age) > 1 ? 's' : ''} old`
+      return `${Math.floor(age * 12)} month${Math.floor(age * 12) > 1 ? 's' : ''} old`
     }
   }
 
