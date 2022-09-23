@@ -42,8 +42,8 @@
 
         <% sortName(students).forEach( e => { %>
         <tr>
-          <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-indigo-600 hover:text-indigo-900 sm:w-auto sm:max-w-none sm:pl-6">
-            <a href="/student/details/<%= e.id %>"><%= e.studentFirstName + ' ' + e.studentLastName %></a>
+          <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium sm:w-auto sm:max-w-none sm:pl-6">
+            <a href="/student/details/<%= e.id %>" class="text-indigo-600 hover:text-indigo-900 "><%= e.studentFirstName + ' ' + e.studentLastName %></a>
             <dl class="font-normal lg:hidden">
               <dt class="sr-only"><%= formatDate(e.dateOfBirth) %></dt>
               <dd class="mt-1 truncate text-gray-700">DOB: <%= formatDate(e.dateOfBirth) %></dd>
