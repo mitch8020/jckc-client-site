@@ -21,7 +21,6 @@ module.exports = (passport) => {
       lastNameApp: '',
       dateOfBirth: '',
       phoneNumber: '',
-      emailAddress: '',
       accountType: '',
       image: profile.photos[0].value,
       parentPermission: false,

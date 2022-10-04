@@ -30,7 +30,8 @@ const UserSchema = new mongoose.Schema({
     type: String
   },
   emailAddress: {
-    type: String
+    type: String,
+    unique: true,
   },
   accountType: {
     type: String
