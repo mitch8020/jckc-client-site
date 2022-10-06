@@ -27,10 +27,10 @@
         <div class="mt-2">
           <fieldset>
             <legend class="text-lg font-medium text-gray-900">Add Students</legend>
-            <% if (students.filter(e => calcAgeGroup(e.dateOfBirth) == classroom.ageGroup && !e.classroom).length > 0) { %>
+            <% if (students.filter(e => !e.classroom).length > 0) { %>
             <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
               <% sortName(students).forEach(e => { %>
-              <% if (calcAgeGroup(e.dateOfBirth) == classroom.ageGroup && !e.classroom) { %>
+              <% if (!e.classroom) { %>
               <div class="relative flex items-start py-4">
                 <div class="min-w-0 flex-1 text-sm">
                   <label for="<%= e.id %>" class="select-none font-medium text-gray-700"><%= e.studentFirstName + ' ' + e.studentLastName + ', ' + convertAge(e.dateOfBirth) %></label>
@@ -53,7 +53,7 @@
       </div>
 
       <!-- Submit Button -->
-      <% if (students.filter(e => calcAgeGroup(e.dateOfBirth) == classroom.ageGroup && !e.classroom).length > 0) { %>
+      <% if (students.filter(e => !e.classroom).length > 0) { %>
       <div class="col-span-12 flex justify-end mt-4 flex py-4 px-4 sm:px-6">
         <a href="/classroom/details/<%= classroom.id %>"><button type="button" class="ml-5 inline-flex justify-center rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-sky-700 shadow-sm hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Cancel</button></a>
         <button type="submit" class="ml-5 inline-flex justify-center rounded-md border border-transparent bg-sky-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Add</button>

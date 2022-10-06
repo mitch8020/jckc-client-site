@@ -25,10 +25,6 @@ module.exports = {
         }
       })
 
-      const infants = students.filter(e => e.ageGroup == 'infant').map(e => `${e.studentLastName}, ${e.studentFirstName}`)
-      const toddlers = students.filter(e => e.ageGroup == 'toddler').map(e => `${e.studentLastName}, ${e.studentFirstName}`)
-      const preschoolers = students.filter(e => e.ageGroup == 'preschool').map(e => `${e.studentLastName}, ${e.studentFirstName}`)
-
       let today = new Date()
       today = `Date: ${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`
       let week = 'Week of ___ /___ to ___ /___'
@@ -44,130 +40,73 @@ module.exports = {
       
       const printer = new PdfPrinter(fonts);
       
-      const signInTableInfants = [
-        [
-          {}, {text: 'IN', style: 'tableHeader', colSpan: 3, 
-          alignment: 'center'}, {}, {}, 
-          {text: 'OUT', style: 'tableHeader', colSpan: 3, alignment: 'center'}, {}, {} 
-        ],
-        [
-          {text: 'STUDENT NAME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
-          alignment: 'center'},
-          {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader', alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
-          alignment: 'center'},
+      let signInPages = classrooms.map((e,i) => {
+        let firstPageHeader = { text: 'JC KIDZ CLUBHOUSE', style: 'header', alignment: 'center' }
+        let otherPageHeader = { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' }
+        return [
+          ( i == 0 ? firstPageHeader : otherPageHeader ),
+          { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
+          {
+            style: 'tableExample',
+            table: {
+              widths: ['*','*'],
+              body: [
+                [
+                  { text: today, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Classroom: ${e.classroomName}`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
+                ],
+                [
+                  { text: `Age Group: ${e.ageGroup.toUpperCase()}`, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Teacher: ${e.teacherName}`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
+                ],
+              ]
+            }
+          },
+          {
+            style: 'tableExample',
+            table: {
+              heights: 15,
+              widths: ['*',125,60,100,125,60,100],
+              body: signInTable(e)
+            }
+          },
         ]
-      ].concat(infants.map(e => [e,'','','','','','']))
+      })
 
-      const signInTableToddlers = [
-        [
-          {}, {text: 'IN', style: 'tableHeader', colSpan: 3, 
-          alignment: 'center'}, {}, {}, 
-          {text: 'OUT', style: 'tableHeader', colSpan: 3, alignment: 'center'}, {}, {} 
-        ],
-        [
-          {text: 'STUDENT NAME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
-          alignment: 'center'},
-          {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader', alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
-          alignment: 'center'},
+      function signInTable (room) {
+        let table = [
+          [
+            {}, {text: 'IN', style: 'tableHeader', colSpan: 3, 
+            alignment: 'center'}, {}, {}, 
+            {text: 'OUT', style: 'tableHeader', colSpan: 3, alignment: 'center'}, {}, {} 
+          ],
+          [
+            {text: 'STUDENT NAME', style: 'tableHeader',
+            alignment: 'center'}, {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader',
+            alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
+            alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
+            alignment: 'center'},
+            {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader', alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
+            alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
+            alignment: 'center'},
+          ]
         ]
-      ].concat(toddlers.map(e => [e,'','','','','','']))
-
-      const signInTablePreschoolers = [
-        [
-          {}, {text: 'IN', style: 'tableHeader', colSpan: 3, 
-          alignment: 'center'}, {}, {}, 
-          {text: 'OUT', style: 'tableHeader', colSpan: 3, alignment: 'center'}, {}, {} 
-        ],
-        [
-          {text: 'STUDENT NAME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
-          alignment: 'center'},
-          {text: 'PARENT / GUARDIAN PRINTED NAME', style: 'tableHeader', alignment: 'center'}, {text: 'TIME', style: 'tableHeader',
-          alignment: 'center'}, {text: 'SIGNATURE', style: 'tableHeader',
-          alignment: 'center'},
-        ]
-      ].concat(preschoolers.map(e => [e,'','','','','','']))
+        students.forEach(e => {
+          if (e.classroom == room.id) {
+            let studentRow = [
+              [
+                { text: `${e.studentLastName}, ${e.studentFirstName}`, style: 'studentrow' },
+                {},{},{},{},{},{}]
+            ]
+            table = table.concat(studentRow)
+          }
+        })
+        return table
+      }
 
       const signInSheet = {
         pageOrientation: 'landscape',
-        content: [
-          { text: 'JC KIDZ CLUBHOUSE', style: 'header', alignment: 'center' },
-          { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
-          {
-            style: 'tableExample',
-            table: {
-              widths: ['*','*'],
-              body: [
-                [
-                  { text: today, style: 'subheader', border: [false, false, false, false] },
-                  { text: `Age Group: INFANTS`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
-                ],
-              ]
-            }
-          },
-          {
-            style: 'tableExample',
-            table: {
-              heights: 20,
-              widths: ['*',125,60,100,125,60,100],
-              body: signInTableInfants
-            }
-          },
-          { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' },
-          { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
-          {
-            style: 'tableExample',
-            table: {
-              widths: ['*','*'],
-              body: [
-                [
-                  { text: today, style: 'subheader', border: [false, false, false, false] },
-                  { text: `Age Group: TODDLERS`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
-                ],
-              ]
-            }
-          },
-          {
-            style: 'tableExample',
-            table: {
-              heights: 20,
-              widths: ['*',125,60,100,125,60,100],
-              body: signInTableToddlers
-            }
-          },
-          { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' },
-          { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
-          {
-            style: 'tableExample',
-            table: {
-              widths: ['*','*'],
-              body: [
-                [
-                  { text: today, style: 'subheader', border: [false, false, false, false] },
-                  { text: `Age Group: PRESCHOOLERS`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
-                ],
-              ]
-            }
-          },
-          {
-            style: 'tableExample',
-            table: {
-              heights: 20,
-              widths: ['*',125,60,100,125,60,100],
-              body: signInTablePreschoolers
-            }
-          },
-        ],
+        content: signInPages.reduce((p,a) => p.concat(a)),
         styles: {
           header: {
             fontSize: 18,
@@ -189,7 +128,7 @@ module.exports = {
           }
         },
       }
-      
+
       let rollCallPages = classrooms.map((e,i) => {
         let firstPageHeader = { text: 'JC KIDZ CLUBHOUSE', style: 'header', alignment: 'center' }
         let otherPageHeader = { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' }

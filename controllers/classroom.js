@@ -109,10 +109,22 @@ module.exports = {
     try {
       const classroom = await Classroom.findById(req.params.id);
       Object.keys(req.body).forEach(async e => {
+        const today = new Date()
+        let student = await Student.findById(e)
+        let dateOfBirth = new Date(student.dateOfBirth)
+        let age = (today - dateOfBirth) / 1000 / 60 / 60 / 24 / 365
+        let ageGroup
+        if (age * 12 < 11) {
+          ageGroup = 'infant'
+        } else if (age * 12 < 30) {
+          ageGroup = 'toddler'
+        } else {
+          ageGroup = 'preschool'
+        }
         await Student.findOneAndUpdate(
           { _id: e },
           { 
-            ageGroup: classroom.ageGroup,
+            ageGroup: ageGroup,
             classroom: classroom.id,
           }
         );
