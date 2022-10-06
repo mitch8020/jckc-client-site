@@ -26,7 +26,7 @@ module.exports = {
       })
 
       let today = new Date()
-      today = `Date: ${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`
+      today = `Date: __________`
       let week = 'Week of ___ /___ to ___ /___'
 
       const fonts = {
@@ -56,7 +56,7 @@ module.exports = {
                   { text: `Classroom: ${e.classroomName}`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
                 ],
                 [
-                  { text: `Age Group: ${e.ageGroup.toUpperCase()}`, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Age Group: __________`, style: 'subheader', border: [false, false, false, false] },
                   { text: `Teacher: ${e.teacherName}`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
                 ],
               ]
@@ -145,7 +145,7 @@ module.exports = {
                   { text: `Classroom: ${e.classroomName}`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
                 ],
                 [
-                  { text: `Age Group: ${e.ageGroup.toUpperCase()}`, style: 'subheader', border: [false, false, false, false] },
+                  { text: `Age Group: __________`, style: 'subheader', border: [false, false, false, false] },
                   { text: `Teacher: ${e.teacherName}`, style: 'subheader', alignment: 'right', border: [false, false, false, false] },
                 ],
               ]
