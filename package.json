@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mitch8020/jckc-client-site.git"
+    "url": "git+https://github.com/mitch8020/jckc-web-app-private.git"
   },
   "author": "JP Mitra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mitch8020/jckc-client-site/issues"
+    "url": "https://github.com/mitch8020/jckc-web-app-private/issues"
   },
-  "homepage": "https://github.com/mitch8020/jckc-client-site#readme",
+  "homepage": "https://github.com/mitch8020/jckc-web-app-private#readme",
   "devDependencies": {
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.19",

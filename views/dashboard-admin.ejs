@@ -31,8 +31,8 @@
       <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Infants in Rooms: <span class="font-normal"><%= classrooms.filter(e => e.ageGroup == 'infant').reduce((p,a) => p + students.filter(e => e.classroom == a.id).length , 0) %></span></li>
       <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Toddlers in Rooms: <span class="font-normal"><%= classrooms.filter(e => e.ageGroup == 'toddler').reduce((p,a) => p + students.filter(e => e.classroom == a.id).length , 0) %></span></li>
       <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Preschoolers in Rooms: <span class="font-normal"><%= classrooms.filter(e => e.ageGroup == 'preschool').reduce((p,a) => p + students.filter(e => e.classroom == a.id).length , 0) %></span></li>
-      <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Total Students: <span class="font-normal"><%= students.length %></span></li>
-      <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Students w/o Rooms: <span class="font-normal"><%= students.filter(e => !e.classroom).length %></span></li>
+      <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Active Students: <span class="font-normal"><%= students.filter(e => e.classroom).length %></span></li>
+      <li class="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">No. of Inactive Students: <span class="font-normal"><%= students.filter(e => !e.classroom).length %></span></li>
     </ul>
   </div>
 </div>

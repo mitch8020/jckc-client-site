@@ -9,6 +9,8 @@ router.get('/registration-student-success', ensureAuth, studentsController.stude
 router.get('/students-summary', ensureAuth, studentsController.getStudentsSummary)
 router.get('/details/:id', ensureAuth, studentsController.getStudentDetails)
 router.get('/edit/:id', ensureAuth, studentsController.getStudentDetailsEdit)
+router.get('/delete/:id', ensureAuth, studentsController.getStudentDelete)
+router.delete('/delete-confirm/:id', ensureAuth, studentsController.deleteStudentConfirm)
 router.put('/push-student-details-edit/:id', ensureAuth, studentsController.pushStudentDetailsEdit)
 
 module.exports = router

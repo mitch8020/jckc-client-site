@@ -115,4 +115,30 @@ module.exports = {
     }
   },
 
+  // @desc    Get Individual Student Delete Page
+  // @route   GET /student/delete/:id
+  getStudentDelete: async (req, res) => {
+    try {
+      const student = await Student.findById(req.params.id);
+      res.render('students-delete.ejs', { student: student })
+    } catch (error) {
+      console.error(error)
+      // res.render('error/500')
+    }
+  },
+
+  // @desc    Delete Individual Student Profile
+  // @route   DELETE /student/push-student-details-edit/:id
+  deleteStudentConfirm: async (req, res) => {
+    try {
+      await Student.deleteOne(
+        { _id: req.params.id }
+      );
+      console.log("Student Deleted!");
+      res.redirect(`/student/students-summary`)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
 }

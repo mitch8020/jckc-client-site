@@ -1,5 +1,6 @@
 const PdfPrinter = require('pdfmake');
 const fs = require('fs');
+const moment = require('moment');
 
 const User = require('../models/User')
 const Student = require('../models/Student')
@@ -65,8 +66,8 @@ module.exports = {
           {
             style: 'tableExample',
             table: {
-              heights: 15,
-              widths: ['*',125,60,100,125,60,100],
+              heights: 22,
+              widths: ['*',125,60,80,125,60,80],
               body: signInTable(e)
             }
           },
@@ -95,7 +96,7 @@ module.exports = {
           if (e.classroom == room.id) {
             let studentRow = [
               [
-                { text: `${e.studentLastName}, ${e.studentFirstName}`, style: 'studentrow' },
+                { text: `${e.studentFirstName} ${e.studentLastName}`, style: 'studentrow' },
                 {},{},{},{},{},{}]
             ]
             table = table.concat(studentRow)
@@ -111,15 +112,15 @@ module.exports = {
           header: {
             fontSize: 18,
             bold: true,
-            margin: [0, 0, 0, 10]
+            margin: [0, 0, 0, 5]
           },
           subheader: {
             fontSize: 16,
             bold: true,
-            margin: [0, 10, 0, 5]
+            margin: [0, 0, 0, 5]
           },
           tableExample: {
-            margin: [0, 5, 0, 15]
+            margin: [0, 0, 0, 0]
           },
           tableHeader: {
             bold: true,
@@ -134,7 +135,6 @@ module.exports = {
         let otherPageHeader = { text: 'JC KIDZ CLUBHOUSE', pageBreak: 'before', style: 'header', alignment: 'center' }
         return [
           ( i == 0 ? firstPageHeader : otherPageHeader ),
-          { text: '408 W Market St, Johnson City, TN 37604', alignment: 'center' },
           {
             style: 'tableExample',
             table: {
@@ -154,7 +154,7 @@ module.exports = {
           {
             style: 'tableExample',
             table: {
-              heights: 15,
+              heights: 22,
               widths: [100,20,28,20,28,20,28,20,28,20,28,'auto'],
               body: rollCallTable(e)
             }
@@ -178,7 +178,7 @@ module.exports = {
           if (e.classroom == room.id) {
             let studentRow = [
               [
-                { text: `${e.studentLastName}, ${e.studentFirstName} \n DOB: ${e.dateOfBirth}`, style: 'studentrow', rowSpan: 2 },
+                { text: `${e.studentFirstName} ${e.studentLastName} \n DOB: ${moment(e.dateOfBirth).utc().format('L')}`, style: 'studentrow', rowSpan: 2 },
                 { text: 'IN', style: 'subsubheader', alignment: 'center' },{},
                 { text: 'IN', style: 'subsubheader', alignment: 'center' },{},
                 { text: 'IN', style: 'subsubheader', alignment: 'center' },{},
@@ -208,19 +208,19 @@ module.exports = {
           header: {
             fontSize: 18,
             bold: true,
-            margin: [0, 0, 0, 10]
+            margin: [0, 0, 0, 5]
           },
           subheader: {
             fontSize: 16,
             bold: true,
-            margin: [0, 5, 0, 5]
+            margin: [0, 0, 0, 5]
           },
           subsubheader: {
             fontSize: 8,
             bold: true,
           },
           tableExample: {
-            margin: [0, 5, 0, 0]
+            margin: [0, 0, 0, 0]
           },
           tableHeader: {
             bold: true,
