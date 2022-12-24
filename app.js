@@ -135,6 +135,7 @@ app.use(function (req, res, next) {
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/student', require('./routes/student'))
+app.use('/guardian', require('./routes/guardian'))
 app.use('/classroom', require('./routes/classroom'))
 app.use('/report', require('./routes/report'))
 
