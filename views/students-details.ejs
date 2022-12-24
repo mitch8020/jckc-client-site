@@ -24,8 +24,8 @@
       <div class="sm:flex-auto">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Student Info</h3>
       </div>
-      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <a href="/student/delete/<%= student.id %>" class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 mr-2 text-sm font-medium text-indigo-500 shadow-sm hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:text-red-700 focus:ring-offset-2 sm:w-auto">Delete</a>
+      <div class="mt-4 sm:mt-0 sm:ml-4 sm:flex-none">
+        <a href="/student/delete/<%= student.id %>" class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 mr-2 text-sm font-medium text-indigo-500 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:text-red-700 focus:ring-offset-2 sm:w-auto">Delete</a>
         <a href="/student/edit/<%= student.id %>" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Edit Info</a>
       </div>
     </div>
@@ -54,6 +54,71 @@
         </div>
 
       </dl>
+    </div>
+  </div>
+
+  <div class="overflow-hidden bg-white shadow sm:rounded-lg col-span-12">
+    <div class="sm:flex sm:items-center px-4 py-4 sm:px-6">
+      <div class="sm:flex-auto">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Guardian Info</h3>
+      </div>
+      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <a href="/guardian/registration-guardian/<%= student._id %>/new-guardian" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">+ Add Guardian</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0 col-span-6">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Address</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 md:table-cell">Phone Number</th>
+            <th scope="col" class="px-10 py-4 text-left text-sm font-semibold text-gray-900">Relationship</th>
+            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Edit</span></th>
+          </tr>
+        </thead>
+
+        <% if (guardiansStudent.length > 0) { %>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <% for (i = 0; i < guardiansStudent.length; i++) { %>
+          <tr>
+            <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+              <a href="/guardian/details/<%= guardiansStudent[i]._id %>" class="text-indigo-600 hover:text-indigo-900"><%= guardiansStudent[i].guardianFirstName + ' ' + guardiansStudent[i].guardianLastName %></a>
+              <dl class="font-normal lg:hidden">
+                <dt class="sr-only"><%= guardiansStudent[i].guardianFirstName + ' ' + guardiansStudent[i].guardianLastName %>/'s Address</dt>
+                <dd class="hidden mt-1 truncate text-gray-700 sm:block"><%= guardiansStudent[i].guardianStreetAddress + ', ' + guardiansStudent[i].guardianCity + ', ' + guardiansStudent[i].guardianState + ' ' + guardiansStudent[i].guardianZIP %></dd>
+                <dd class="block mt-1 truncate text-gray-700 sm:hidden"><%= guardiansStudent[i].guardianStreetAddress %></dd>
+                <dd class="block mt-1 truncate text-gray-700 sm:hidden"><%= guardiansStudent[i].guardianCity + ', ' + guardiansStudent[i].guardianState + ' ' + guardiansStudent[i].guardianZIP %></dd>
+              </dl>
+              <dl class="font-normal md:hidden">
+                <dt class="sr-only"><%= guardiansStudent[i].guardianFirstName + ' ' + guardiansStudent[i].guardianLastName %>/'s Phone Number</dt>
+                <dd class="mt-1 truncate text-gray-700"><%= guardiansStudent[i].phoneNumber %></dd>
+              </dl>
+            </td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= guardiansStudent[i].guardianStreetAddress + ', ' + guardiansStudent[i].guardianCity + ', ' + guardiansStudent[i].guardianState + ' ' + guardiansStudent[i].guardianZIP %></td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 md:table-cell"><%= guardiansStudent[i].phoneNumber %></td>
+            <td class="px-10 py-4 text-sm text-gray-500"><%= guardiansStudent[i].students.find(e => e.student.toString() === student._id.toString()).relationshipToStudent %></td>
+            <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+              <a href="/guardian/edit/<%= guardiansStudent[i]._id %>" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">Edit</span></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+        <% } else { %>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr>
+            <td class="col-span-4 w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+              No Assigned Guardians Available
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% } %>
+
+      </table>
     </div>
   </div>
 
